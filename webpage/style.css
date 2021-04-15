@@ -1,0 +1,72 @@
+
+body {
+    text-align: center;
+    background-color: black;
+}
+
+
+
+.banner-area {
+	width: 100%;
+	height: 500px;
+	position: fixed;
+	top: 100px;
+	background-image: url(https://www.verdict.co.uk/wp-content/uploads/2018/05/shutterstock_1084944764.jpg);
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+}
+
+
+.banner-area h2 {
+	padding-top: 9%;
+	font-size: 100px;
+	font-family: bold;
+	text-transform: uppercase;
+    color: rgb(44, 191, 196);
+    
+}
+
+.content-area {
+	width: 100%;
+	position: relative;
+	top: 450px;
+	background: #ebebeb;
+	height: 1500px;
+}
+.content-area h2 {
+	font-family: poppins;
+	letter-spacing: 4px;
+	padding-top: 30px;
+	font-size: 40px;
+	margin: 0;
+}
+.content-area p {
+	padding: 2% 0px;
+	font-family: poppins;
+	line-height: 30px;
+}
+
+
+a.navbar-brand{
+    margin-left: 10px;
+    padding: 10px;
+    background-color: rgb(44, 191, 196);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    color:white;
+}
+
+#navbarDropdown{
+    color: white;
+}
+
+.navbar-nav > li > .dropdown-menu a{   color: #000000;  }
+.navbar-nav > li > .dropdown-menu {     background-color: rgb(44, 191, 196);  }
+
+
+.nav-item{
+    color:white;
+
+}
+
