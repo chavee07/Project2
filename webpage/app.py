@@ -32,7 +32,7 @@ def welcome():
 
     return jsonify(all_names)
 
-@app.route("/landing.html")
+@app.route("/landing")
 def names():
     #################################################
     # Database Setup
