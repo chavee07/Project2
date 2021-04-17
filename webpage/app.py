@@ -2,7 +2,7 @@ import pandas as pd
 import sqlite3
 from sqlalchemy.orm import Session
 import pprint
-from flask import Flask, request, render_template, json, current_app
+from flask import Flask, request, render_template, jsonify, current_app
 
 #################################################
 # Flask Setup
@@ -30,7 +30,9 @@ def names():
     # Convert list of tuples into normal list
     data = test_run.to_json()
 
-    return current_app.response_class(json.dumps(data))
+    # return current_app.response_class(json.dumps(data))
+
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True)

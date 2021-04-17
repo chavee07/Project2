@@ -3,4 +3,6 @@
 
 d3.json("/landing").then(function(data) {
   console.log(data);
+
+  
 });
