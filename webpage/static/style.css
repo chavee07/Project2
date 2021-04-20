@@ -10,7 +10,7 @@ body {
 	height: 500px;
 	position: fixed;
 	top: 100px;
-	background-image: url(https://www.verdict.co.uk/wp-content/uploads/2018/05/shutterstock_1084944764.jpg);
+	background-image: url(static/banner-img.jpeg);
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-position: center center;
@@ -56,17 +56,21 @@ a.navbar-brand{
     color:white;
 }
 
-#navbarDropdown{
-    color: white;
+.nav-bar{
+    color:white;
+	list-style-type: none;
+
 }
 
-.navbar-nav > li > .dropdown-menu a{   color: #000000;  }
-.navbar-nav > li > .dropdown-menu {     background-color: rgb(44, 191, 196);  }
-
-
-.nav-item{
+li.nav-item{
     color:white;
+	list-style-type: none;
 
+}
+
+.nav-link{
+	list-style-type: none;
+	color: white;
 }
 
 .ml2 {

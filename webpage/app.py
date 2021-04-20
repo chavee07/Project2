@@ -19,6 +19,12 @@ def welcome():
     """List all available api routes."""
     return render_template('index.html')
 
+
+@app.route("/index")
+def home():
+    """List all available api routes."""
+    return render_template('index.html')
+
 @app.route("/landing")
 def names():
     #################################################
