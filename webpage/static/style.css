@@ -15,8 +15,7 @@ body {
 	background-size: cover;
 	background-position: center center;
 	opacity: .9;
-	
-	
+
 }
 
 .background{ 
@@ -66,10 +65,10 @@ body {
 
 a.navbar-brand{
     margin-left: 10px;
-    padding: 10px;
+    padding: 25px;
     background-color: rgb(243, 88, 248);
     font-family: 'Times New Roman', Times, serif;
-    font-size: 25px;
+    font-size: 10px;
     color:white;
 }
 
