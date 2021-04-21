@@ -32,7 +32,7 @@ def names():
     #################################################
     # Database Setup
     #################################################
-    con = sqlite3.connect("../data/project2.sqlite")
+    con = sqlite3.connect("../Data/project2.sqlite")
     db = con.cursor()
 
     # country = db.execute('SELECT Country from df').fetchall()

@@ -5,8 +5,6 @@ d3.json("/landing").then(function(data) {
   console.log(data);
 });
 
-for (i=0, i.length, i++)
-
 
 
 function makeResponsive() {
