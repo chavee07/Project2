@@ -1,10 +1,17 @@
-var dataArray = [1, 2, 3];
-var dataCategories = ["one", "two", "three"];
+//set variables for the chart
+var countries = []
+var scores = []
+var alcohol = []
 
-d3.json("/landing").then(function(data) {
-  console.log(data);
-});
+d3.json("/data").then(function(d) {
+  var countries = d.map(c => c.Country);
+  var scores = d.map(c=>c.Happiness_Score);
+  var alcohol =d.map(c=>c.Alcohol_Consumption);
+  
 
+console.log(alcohol)
+console.log(scores)
+console.log(countries)
 
 function makeResponsive() {
 
@@ -43,12 +50,12 @@ function makeResponsive() {
 
     // scale y to chart height
   var yScale = d3.scaleLinear()
-        .domain([0, d3.max(dataArray)])
+        .domain([0, d3.max(scores)])
         .range([chartHeight, 0]);
 
     // scale x to chart width
   var xScale = d3.scaleBand()
-        .domain(dataCategories)
+        .domain(countries)
         .range([0, chartWidth])
         .padding(0.1);
 
@@ -67,17 +74,17 @@ function makeResponsive() {
 
 
   chartGroup.selectAll("rect")
-        .data(dataArray)
+        .data(scores)
         .enter()
         .append("rect")
-        .attr("x", (d, i) => xScale(dataCategories[i]))
+        .attr("x", (d, i) => xScale(countries[i]))
         .attr("y", d => yScale(d))
         .attr("width", xScale.bandwidth())
         .attr("height", d => chartHeight - yScale(d))
         .attr("fill", "green")
         // event listener for onclick event
         .on("click", function(d, i) {
-          alert(`Hey! You clicked bar ${dataCategories[i]}!`);
+          alert(`Hey! You clicked bar ${countries[i]}!`);
         })
         // event listener for mouseover
         .on("mouseover", function() {
@@ -92,6 +99,7 @@ function makeResponsive() {
 }
 
 makeResponsive();
+});
 
 // Event listener for window resize.
 // When the browser window is resized, makeResponsive() is called.
