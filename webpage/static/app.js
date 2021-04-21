@@ -1,18 +1,8 @@
-<<<<<<< HEAD
-var dataArray = [1, 2, 3];
-var dataCategories = ["one", "two", "three"];
 
-// d3.json("/landing").then(function(data) {
-//   console.log(data);
-// });
-
-// for (i=0, i.length, i++)
-=======
 //set variables for the chart
 var countries = []
 var scores = []
 var alcohol = []
->>>>>>> c8512bbe0683415c7392ab554e49f41332b1ea6c
 
 d3.json("/data").then(function(d) {
   var countries = d.map(c => c.Country);

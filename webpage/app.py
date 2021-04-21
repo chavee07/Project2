@@ -32,11 +32,8 @@ def names():
     #################################################
     # Database Setup
     #################################################
-<<<<<<< HEAD
-    con = sqlite3.connect("data/project2.sqlite")
-=======
     con = sqlite3.connect("../Data/project2.sqlite")
->>>>>>> c8512bbe0683415c7392ab554e49f41332b1ea6c
+
     db = con.cursor()
 
     # Convert list of tuples into normal list
