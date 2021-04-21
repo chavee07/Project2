@@ -6,7 +6,6 @@ d3.json("/landing").then(function(data) {
 });
 
 
-
 function makeResponsive() {
 
     // if the SVG area isn't empty when the browser loads,

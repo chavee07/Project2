@@ -7,9 +7,9 @@ body {
 
 .banner-area {
 	
-	font-size:200px;
+	font-size:100px;
 	top: 100px;
-	color: rgb(243, 88, 248);
+	color: rgb(255, 255, 255);
 	font-family: bold;
 	-webkit-background-size: cover;
 	background-size: cover;
@@ -66,9 +66,9 @@ body {
 a.navbar-brand{
     margin-left: 10px;
     padding: 25px;
-    background-color: rgb(243, 88, 248);
+    background-color: rgb(91, 144, 223);
     font-family: 'Times New Roman', Times, serif;
-    font-size: 10px;
+    font-size: 25px;
     color:white;
 }
 

@@ -35,21 +35,40 @@ def names():
     con = sqlite3.connect("../Data/project2.sqlite")
     db = con.cursor()
 
-    # country = db.execute('SELECT Country from df').fetchall()
-    # con_code = db.execute('SELECT "Country Code" from df').fetchall()
-    # score = db.execute('SELECT Score from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-
     # Convert list of tuples into normal list
     results = db.execute('Select * from df').fetchall()
 
-    # return jsonify(data)
+    # return jsonify(result)
+
+    # Create a dictionary from the row data and append to a list of all_passengers
+    all_countries = []
+    for country, con_code, score, gdp, social, health, freedom, generosity, corruption, alcohol in results:
+        countries_dict = {}
+        countries_dict["Country"] = country
+        countries_dict["Country Code"] = con_code
+        countries_dict["Score"] = score
+        countries_dict["GDP per capita"] = gdp
+        countries_dict["Social support"] = social
+        countries_dict["Health life expectancy"] = health
+        countries_dict["Freedom to make life choices"] = freedom
+        countries_dict["Generosity"] = generosity
+        countries_dict["Perceptions of corruption"] = corruption
+        countries_dict["Alcohol Consumption per Capita (liter)"] = alcohol
+        all_countries.append(countries_dict)
+
+    return jsonify(all_countries)
+
+@app.route("/geojson")
+def geojson():
+
+    #################################################
+    # Database Setup
+    #################################################
+    con = sqlite3.connect("/Data/project2.sqlite")
+    db = con.cursor()
+
+    # Convert list of tuples into normal list
+    results = db.execute('Select * from df').fetchall()
 
 
     # Create a dictionary from the row data and append to a list of all_passengers
@@ -69,7 +88,6 @@ def names():
         all_countries.append(countries_dict)
 
     return jsonify(all_countries)
-    # # return current_app.response_class(json.dumps(data))
     
 @app.route("/maps")
 def maps():
@@ -83,11 +101,9 @@ def bar():
 def bubble():
     return render_template('bubble.html')
 
-
 @app.route("/gauge")
 def gauge():
     return render_template('gauge.html')
-
 
 
 
