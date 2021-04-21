@@ -32,25 +32,17 @@ def names():
     #################################################
     # Database Setup
     #################################################
+<<<<<<< HEAD
     con = sqlite3.connect("data/project2.sqlite")
+=======
+    con = sqlite3.connect("../Data/project2.sqlite")
+>>>>>>> c8512bbe0683415c7392ab554e49f41332b1ea6c
     db = con.cursor()
-
-    # country = db.execute('SELECT Country from df').fetchall()
-    # con_code = db.execute('SELECT "Country Code" from df').fetchall()
-    # score = db.execute('SELECT Score from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
-    # country = db.execute('SELECT Country from df').fetchall()
 
     # Convert list of tuples into normal list
     results = db.execute('Select * from df').fetchall()
 
-    # return jsonify(data)
-
+    # return jsonify(result)
 
     # Create a dictionary from the row data and append to a list of all_passengers
     all_countries = []
@@ -69,7 +61,37 @@ def names():
         all_countries.append(countries_dict)
 
     return jsonify(all_countries)
-    # # return current_app.response_class(json.dumps(data))
+
+@app.route("/data")
+def geojson():
+
+    #################################################
+    # Database Setup
+    #################################################
+    con = sqlite3.connect("../Data/project2.sqlite")
+    db = con.cursor()
+
+    # Convert list of tuples into normal list
+    results = db.execute('Select * from renamed_df').fetchall()
+
+
+    # Create a dictionary from the row data and append to a list of all_passengers
+    country_data = []
+    for country, con_code, score, gdp, social, health, freedom, generosity, corruption, alcohol in results:
+        countries_dict = {}
+        countries_dict["Country"] = country
+        countries_dict["con_code"] = con_code
+        countries_dict["Happiness_Score"] = score
+        countries_dict["GDP"] = gdp
+        countries_dict["Social_Support"] = social
+        countries_dict["Life_Expectancy"] = health
+        countries_dict["Freedom"] = freedom
+        countries_dict["Generosity"] = generosity
+        countries_dict["Perceptions_of_Corruption"] = corruption
+        countries_dict["Alcohol_Consumption"] = alcohol
+        country_data.append(countries_dict)
+
+    return jsonify(country_data)
     
 @app.route("/maps")
 def maps():
@@ -83,11 +105,9 @@ def bar():
 def bubble():
     return render_template('bubble.html')
 
-
 @app.route("/gauge")
 def gauge():
     return render_template('gauge.html')
-
 
 
 
