@@ -1,11 +1,11 @@
 var dataArray = [1, 2, 3];
 var dataCategories = ["one", "two", "three"];
 
-d3.json("/landing").then(function(data) {
-  console.log(data);
-});
+// d3.json("/landing").then(function(data) {
+//   console.log(data);
+// });
 
-for (i=0, i.length, i++)
+// for (i=0, i.length, i++)
 
 
 
