@@ -70,18 +70,18 @@ a.navbar-brand{
     font-family: 'Times New Roman', Times, serif;
     font-size: 25px;
     color:white;
+	list-style-type: none;
 }
 
-#navbarDropdown{
-    color: white;
+
+.navbar-nav > li > .nav-item{
+	color: white;
+	list-style-type: none;
 }
-
-.navbar-nav > li > .dropdown-menu a{   color: #000000;  }
-.navbar-nav > li > .dropdown-menu {     background-color: rgb(44, 191, 196);  }
-
 
 .nav-item{
     color:white;
+	list-style-type: none;
 
 }
 
