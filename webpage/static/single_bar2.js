@@ -49,12 +49,12 @@ function makeResponsive() {
     top: 50,
     right: 75,
     bottom: 75,
-    left: 50
+    left: 75
   };
 
     // chart area minus margins
-  var chartHeight = svgHeight - margin.top - margin.bottom;
-  var chartWidth = svgWidth - margin.left - margin.right;
+  var chartHeight = svgHeight - 300;
+  var chartWidth = svgWidth - 300;
 
     // create svg container
   var svg = d3.select("#chart").append("svg")
