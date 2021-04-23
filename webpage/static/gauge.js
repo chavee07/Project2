@@ -3,7 +3,7 @@
 ///////DROPDOWN//////////
 function init() {
     d3.json("/landing").then((data)=> {
-    console.log( data);
+    // console.log( data);
     
 
     //set dropdown menu w/ id//
@@ -17,44 +17,17 @@ function init() {
 d3.select("#selDataset").append("option").text(d.Country).property("value");
 
 
-
-var data_guage = [{
-    domain: {x: [0, 1], y: [0, 1]},
-    value: parseFloat(d.Country),
-    title: {text: `Country Happiness`},
-    type: "indicator",
-    mode: "gauge+number",
-    gauge: { axis: { range: [null, 9] },
-    bar : { color: "red" },
-    steps: [
-    {range: [0, 3], color: "cyan"},
-    {range: [3, 7], color: "royalBlue"},
-    {range: [7, 9], color: "blue"},
-    ]}
-    }];
-
-
-var layout_guage = { 
-width: 700, 
-height: 600, 
-margin: { t: 20, b: 40, l:100, r:100 } 
-};
-
-Plotly.newPlot("gauge", data_guage, layout_guage);
-
-
-
 });
 
 
+plots(data[0].Country)
+scoreInfo(data[0].Country);
 
 
-
-    // countries(data.Country);
-    // scores(data.Score);
 
     
-})};
+})
+};
 
 
 
@@ -65,7 +38,7 @@ function scoreInfo(id) {
         //call in metadata to demographic panel//
     
     
-    var result = data.filter(data => data.Country.toString() === id)[0];
+   result = data.filter(s => s.Country.toString() === id)[0];
         //select demographic panel from html//
     var info = d3.select("#sample-metadata");
         //empty the demographic panel for new data//
@@ -73,9 +46,14 @@ function scoreInfo(id) {
    
     
     
-    Object.entries(result).forEach((key) => {   
-        info.append("h5").text(key[0]+ ": " + key[1]);   
+    
+    Object.entries(result).forEach(([key,value]) => {   
+        console.log(key,value)
+        info.append("h5").text(key+ ": " + value);   
         });
+
+
+        
     });
 
 };
@@ -83,60 +61,121 @@ function scoreInfo(id) {
 
 
 //create function for data//
-function countries(id) {
+function plots(id) {
     d3.json("/landing").then((data)=> {
         // console.log(data)
-        
-    
-var countryName = data.Country.filter(c => c.id.toString() === id)[0];
-// console.log(`Country Name: ${countryName}`)
+
+       
+   console.log(data)
+
      
         
-var countryScore = data.Score.filter(s => s.id.toString() === id)[0];
-// console.log(`Country Score: ${countryScore}`)
+var countryScore = data.filter(s => s.Country.toString() === id);
+console.log(countryScore)
     
-  
-    
-     
 
 
 
 
-
-
-  
         //guage chart//
     var data_guage = [{
         domain: {x: [0, 1], y: [0, 1]},
-        value: parseFloat(d.Score),
+        value: parseFloat(countryScore[0].Score),
         title: {text: `Country Happiness`},
         type: "indicator",
         mode: "gauge+number",
-        gauge: { axis: { range: [null, 9] },
-        bar : { color: "red" },
+        gauge: { axis: { range: [null, 9], },
+        bar : { color: "rgb(31, 233, 172)" },
+        borderwidth: 5,
+        bordercolor: "darkblue",
         steps: [
-        {range: [0, 3], color: "cyan"},
-        {range: [3, 7], color: "royalBlue"},
-        {range: [7, 9], color: "blue"},
-        ]}
-        }];
+        {range: [0, 2], color: "royalblue"},
+        {range: [2, 7], color: "rgb(194, 4, 178)"},
+        {range: [7, 9], color: "rgb(14, 59, 126)"},
+    ],
+
+    threshold: {
+        line: {
+          color: "red",
+          width: 4
+        },
+        thickness: 0.75,
+        value: 8.9
+      }
+
+
+
+
+}
+}];
+
+
 
 
     var layout_guage = { 
-    width: 700, 
-    height: 600, 
-    margin: { t: 20, b: 40, l:100, r:100 } 
+    width: 600, 
+    height: 500, 
+    margin: { t: 25, b: 45, l:25, r:25 } 
     };
 
     Plotly.newPlot("gauge", data_guage, layout_guage);
 
+
+
+
+//// copy gauge chart above and chance Score from value to alchol consumtiion////////
+///// call in alcohol consumption [0]["Alchol Constu from data exact name"]////////
+
+
+        //guage chart//
+        var data_guage = [{
+            domain: {x: [0, 1], y: [0, 1]},
+            value: parseFloat(countryScore[0]["Alcohol Consumption per Capita (liter)"]),
+            title: {text:`Alcohol Consumption `},
+            type: "indicator",
+        mode: "gauge+number",
+        gauge: { axis: { range: [null, 15] },
+        bar : { color: "  rgb(31, 233, 172)"},
+        borderwidth: 5,
+        bordercolor: "darkblue",
+        steps: [
+        {range: [0, 3], color: "royalblue"},
+        {range: [3, 12], color: "rgb(194, 4, 178)"},
+        {range: [12, 15], color: " rgb(14, 59, 126)"},
+        ],
+        threshold: {
+            line: {
+              color: "red",
+              width: 4
+            },
+            thickness: 0.75,
+            value: 14.8
+          }
+    
+    }
+        }];
+
+    
+        var layout_guage = { 
+        width: 600, 
+        height: 500, 
+        margin: { t: 25, b: 25, l:25, r:25 } 
+        };
+    
+        Plotly.newPlot("gauge2", data_guage, layout_guage);
+
+
+
+
+
 });
 }  
+
 
 init();
 
 //change function// 
     function optionChanged(id){
-    countries(id);
     scoreInfo(id);
+    plots(id);
 }
